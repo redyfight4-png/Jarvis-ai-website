@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS AI | Abdul Samir Tuhin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --emerald: #10b981;
+            --emerald-glow: rgba(16, 185, 129, 0.4);
+            --bg-dark: #05080a;
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-outfit { font-family: 'Outfit', sans-serif; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .emerald-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        .text-emerald-glow {
+            text-shadow: 0 0 20px var(--emerald-glow);
+        }
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bento-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--emerald);
+            box-shadow: 0 20px 40px -20px var(--emerald-glow);
+        }
+        .circular-text {
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--emerald);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+        .code-glow {
+            box-shadow: inset 0 0 50px rgba(16, 185, 129, 0.1);
+        }
+    </style>
+</head>
+<body class="selection:bg-emerald-500 selection:text-black">
+
+    <div class="custom-cursor hidden md:block"></div>
+
+    <!-- Background Orbs -->
+    <div class="orb w-[400px] h-[400px] bg-emerald-600 top-[-100px] right-[-100px]"></div>
+    <div class="orb w-[300px] h-[300px] bg-emerald-900 bottom-[10%] left-[-50px]"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-2xl px-8 py-4">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center font-bold text-black">J</div>
+                <span class="text-xl font-outfit font-bold tracking-tighter">JARVIS <span class="text-emerald-500 italic">AI</span></span>
+            </div>
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium text-slate-300">
+                <a href="#" class="hover:text-emerald-400 transition-colors">Home</a>
+                <a href="#features" class="hover:text-emerald-400 transition-colors">Features</a>
+                <a href="#source" class="hover:text-emerald-400 transition-colors">Source</a>
+                <a href="#download" class="hover:text-emerald-400 transition-colors">Download</a>
+            </div>
+            <button class="magnetic-btn glass px-6 py-2 rounded-full text-sm font-semibold border-emerald-500/30 hover:border-emerald-500 transition-all">
+                Get Started
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div class="z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border-emerald-500/20 mb-6" id="hero-badge">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-emerald-500">Version 2.0 Now Live</span>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-outfit font-extrabold leading-[0.9] mb-6" id="hero-title">
+                    Your Ultimate <br/> 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-200 to-emerald-600">Intelligent</span> <br/>
+                    Companion.
+                </h1>
+                <p class="text-slate-400 text-lg md:text-xl max-w-lg mb-10 leading-relaxed" id="hero-desc">
+                    Developed by <span class="text-white font-semibold">Abdul Samir Tuhin</span>, JARVIS AI pushes the boundaries of neural computing, bringing Jarvis-level automation to your desktop.
+                </p>
+                <div class="flex flex-wrap gap-4" id="hero-btns">
+                    <button class="magnetic-btn emerald-gradient px-8 py-4 rounded-xl font-bold text-black flex items-center gap-2 group">
+                        Download Now
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                    </button>
+                    <button class="magnetic-btn glass px-8 py-4 rounded-xl font-bold border-emerald-500/20 hover:bg-emerald-500/5 transition-all">
+                        View Source
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative" id="hero-image">
+                <div class="absolute inset-0 bg-emerald-500/20 blur-[120px] rounded-full"></div>
+                <div class="relative glass rounded-3xl p-4 border-emerald-500/20">
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="AI Core" class="rounded-2xl grayscale hover:grayscale-0 transition-all duration-700">
+                    
+                    <!-- Floating Cards -->
+                    <div class="absolute -top-10 -right-10 glass p-6 rounded-2xl border-emerald-500/30 floating-element">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">Processing Core</span>
+                        </div>
+                        <div class="text-2xl font-outfit font-bold">98.4%</div>
+                        <div class="w-32 h-1 bg-white/10 rounded-full mt-2">
+                            <div class="w-4/5 h-full bg-emerald-500 rounded-full"></div>
+                        </div>
+                    </div>
+
+                    <div class="absolute -bottom-10 -left-10 glass p-6 rounded-2xl border-emerald-500/30 floating-element" style="animation-delay: -2s;">
+                        <div class="flex gap-2">
+                            <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-400 uppercase tracking-widest">Active Users</div>
+                                <div class="text-lg font-bold">12,540+</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Circular Stamp -->
+                    <div class="absolute top-1/2 -right-20 circular-text hidden xl:block">
+                        <svg viewBox="0 0 100 100" width="150" height="150" class="fill-emerald-500/50">
+                            <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                            <text font-size="8" font-weight="bold" letter-spacing="2">
+                                <textPath xlink:href="#circlePath">
+                                    CREATED BY ABDUL SAMIR TUHIN • PREMIUM QUALITY • JARVIS AI 2.0 •
+                                </textPath>
+                            </text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-32 px-6 bg-[#080c10]" id="mission">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-emerald-500 font-bold uppercase tracking-[0.3em] text-sm mb-6 reveal-text">Our Philosophy</h2>
+            <p class="text-3xl md:text-5xl font-outfit font-medium leading-tight reveal-text">
+                "JARVIS isn't just software; it's a <span class="text-emerald-400">digital manifestation</span> of productivity. We aim to bridge the gap between human thought and machine execution."
+            </p>
+            <div class="mt-12 flex flex-col items-center gap-4 reveal-text">
+                <img src="https://i.pravatar.cc/150?img=33" alt="Tuhin" class="w-16 h-16 rounded-full border-2 border-emerald-500 p-1">
+                <div>
+                    <div class="font-bold">Abdul Samir Tuhin</div>
+                    <div class="text-slate-500 text-sm italic">Lead Developer & Founder</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Bento Grid -->
+    <section class="py-32 px-6" id="features">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-4xl md:text-6xl font-outfit font-extrabold mb-4">Elite Capabilities</h2>
+                <p class="text-slate-400 max-w-2xl">Beyond standard automation. JARVIS utilizes advanced LLMs and local system integration for a seamless experience.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+                <!-- Feature 1: Financial -->
+                <div class="md:col-span-8 bento-card glass rounded-3xl p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
+                    <div class="relative h-full flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 emerald-gradient rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-emerald-500/20">
+                                <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                            </div>
+                            <h3 class="text-3xl font-bold mb-4">Advanced Financial Analysis</h3>
+                            <p class="text-slate-400 max-w-md text-lg leading-relaxed">Analyze market trends, manage portfolios, and get real-time fiscal insights with our proprietary financial engine integration.</p>
+                        </div>
+                        <div class="mt-8 grid grid-cols-3 gap-4">
+                            <img src="https://picsum.photos/1920/1080?random=10" class="rounded-xl h-24 w-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all">
+                            <img src="https://picsum.photos/1920/1080?random=11" class="rounded-xl h-24 w-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all">
+                            <img src="https://picsum.photos/1920/1080?random=12" class="rounded-xl h-24 w-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Coding -->
+                <div class="md:col-span-4 bento-card glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-end">
+                    <div class="absolute top-8 right-8 text-emerald-500/20 text-8xl font-black italic select-none">CODE</div>
+                    <div class="relative">
+                        <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Master Coding Assistant</h3>
+                        <p class="text-slate-400 text-sm">Real-time debugging, boilerplate generation, and logic optimization across 20+ languages.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Context -->
+                <div class="md:col-span-4 bento-card glass rounded-3xl p-8 flex flex-col justify-center text-center">
+                    <div class="text-5xl font-outfit font-black text-emerald-500 mb-4 tracking-tighter">LIVE</div>
+                    <h3 class="text-xl font-bold mb-2">Real-time Context</h3>
+                    <p class="text-slate-400 text-sm italic">"Always listening, always learning. JARVIS understands your environment."</p>
+                </div>
+
+                <!-- Feature 4: Automation -->
+                <div class="md:col-span-8 bento-card glass rounded-3xl p-8 relative overflow-hidden group">
+                    <div class="flex flex-col md:flex-row gap-8 items-center h-full">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold mb-4">System Automation</h3>
+                            <p class="text-slate-400 leading-relaxed mb-6">Control your entire hardware ecosystem. From file management to system settings, JARVIS acts as your OS conductor.</p>
+                            <ul class="space-y-2 text-sm text-emerald-400/80">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293l-4-4a1 1 0 00-1.414 1.414L11.586 9H7a1 1 0 100 2h4.586l-3.293 3.293a1 1 0 001.414 1.414l4-4a1 1 0 000-1.414z"></path></svg>
+                                    Automated OS Backup
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293l-4-4a1 1 0 00-1.414 1.414L11.586 9H7a1 1 0 100 2h4.586l-3.293 3.293a1 1 0 001.414 1.414l4-4a1 1 0 000-1.414z"></path></svg>
+                                    Smart Scheduling
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 bg-black/40 rounded-2xl p-4 border border-white/5 code-glow">
+                            <pre class="text-[10px] text-emerald-500 font-mono">
+<span class="text-slate-500">// Initialize System Overdrive</span>
+function initJarvis() {
+  const core = new JarvisCore({
+    mode: 'autonomous',
+    user: 'Samir Tuhin',
+    security: 'Lvl_9'
+  });
+  
+  core.connectToHardware();
+  <span class="text-emerald-200">core.optimizePerformance();</span>
+  return 'System Ready';
+}
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Source Section -->
+    <section class="py-32 px-6 relative" id="source">
+        <div class="max-w-7xl mx-auto">
+            <div class="glass rounded-[3rem] p-12 md:p-20 border-emerald-500/10 overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+                    <img src="https://picsum.photos/1920/1080?random=15" alt="source-bg" class="w-full h-full object-cover">
+                </div>
+                <div class="relative z-10 max-w-2xl">
+                    <h2 class="text-5xl font-outfit font-extrabold mb-8">Open to <span class="text-emerald-500 italic">Inspect</span>.</h2>
+                    <p class="text-slate-400 text-lg mb-10 leading-relaxed">
+                        Transparency is key. The core logic of JARVIS AI is available for peer review. Our codebase follows rigorous standards of clean architecture and performance-first engineering.
+                    </p>
+                    <div class="flex items-center gap-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-white">45k+</div>
+                            <div class="text-[10px] uppercase tracking-widest text-emerald-500">Lines written</div>
+                        </div>
+                        <div class="w-[1px] h-12 bg-white/10"></div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-white">100%</div>
+                            <div class="text-[10px] uppercase tracking-widest text-emerald-500">Safety Rating</div>
+                        </div>
+                        <div class="w-[1px] h-12 bg-white/10"></div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-white">Py/JS</div>
+                            <div class="text-[10px] uppercase tracking-widest text-emerald-500">Tech Stack</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="py-32 px-6" id="download">
+        <div class="max-w-7xl mx-auto flex flex-col items-center">
+            <div class="text-center mb-16">
+                <div class="text-emerald-500 font-bold mb-4 tracking-widest">PREMIUM ACCESS</div>
+                <h2 class="text-5xl md:text-7xl font-outfit font-black mb-8">Join the Elite.</h2>
+            </div>
+            
+            <div class="w-full max-w-md glass rounded-3xl p-10 border-2 border-emerald-500/20 relative">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 emerald-gradient px-6 py-2 rounded-full text-black text-xs font-bold uppercase tracking-wider">
+                    Full Package
+                </div>
+                <div class="flex justify-between items-end mb-10">
+                    <div>
+                        <div class="text-slate-400 text-sm mb-1">Customizable Support</div>
+                        <div class="text-5xl font-outfit font-bold">Tk. <span class="text-emerald-400">Any</span></div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-emerald-500 font-bold">LIFETIME</div>
+                        <div class="text-slate-500 text-xs uppercase">One-time payment</div>
+                    </div>
+                </div>
+                
+                <div class="space-y-4 mb-10">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-slate-300">Executable Binaries (.EXE)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-slate-300">Complete Python Source Code</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-slate-300">Priority Feature Requests</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-slate-300">Personal Support from Samir</span>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <input type="number" placeholder="Enter Amount (Tk)" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-emerald-500 transition-colors">
+                    <button class="magnetic-btn w-full emerald-gradient py-5 rounded-xl font-black text-black uppercase tracking-widest hover:brightness-110 transition-all">
+                        Secure Checkout
+                    </button>
+                    <p class="text-[10px] text-center text-slate-500 px-4 uppercase leading-relaxed">
+                        Payment confirms license agreement. Access is granted instantly via secure portal.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div>
+                <div class="text-2xl font-outfit font-bold tracking-tighter mb-4">JARVIS <span class="text-emerald-500 italic">AI</span></div>
+                <p class="text-slate-500 text-sm max-w-xs">Building the future of personal intelligence, one line of code at a time.</p>
+            </div>
+            
+            <div class="flex gap-12">
+                <div>
+                    <h4 class="font-bold mb-4">Product</h4>
+                    <ul class="text-slate-500 text-sm space-y-2">
+                        <li><a href="#" class="hover:text-emerald-400">Changelog</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">Documentation</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Creator</h4>
+                    <ul class="text-slate-500 text-sm space-y-2">
+                        <li><a href="#" class="hover:text-emerald-400">Portfolio</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <div class="text-slate-400 text-sm mb-2 italic">© 2024 JARVIS AI.</div>
+                <div class="text-[10px] text-emerald-500/50 uppercase tracking-widest">Designed & Developed by <br/> Abdul Samir Tuhin</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.2
+            });
+        });
+
+        // Hero Animations
+        const tl = gsap.timeline();
+        tl.from("#hero-badge", { y: -20, opacity: 0, duration: 0.8, ease: "power3.out" })
+          .from("#hero-title", { y: 40, opacity: 0, duration: 1, ease: "power4.out" }, "-=0.5")
+          .from("#hero-desc", { y: 20, opacity: 0, duration: 0.8 }, "-=0.7")
+          .from("#hero-btns", { y: 20, opacity: 0, duration: 0.8 }, "-=0.7")
+          .from("#hero-image", { scale: 0.9, opacity: 0, duration: 1.2, ease: "expo.out" }, "-=1");
+
+        // Floating Animations
+        gsap.to(".floating-element", {
+            y: 20,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('py-2');
+                nav.querySelector('div').classList.add('bg-black/80');
+            } else {
+                nav.classList.remove('py-2');
+                nav.querySelector('div').classList.remove('bg-black/80');
+            }
+        });
+
+        // Magnetic Buttons
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Scroll Text Reveal
+        const reveals = document.querySelectorAll('.reveal-text');
+        reveals.forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 80%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Bento Grid Reveal
+        gsap.from(".bento-card", {
+            scrollTrigger: {
+                trigger: "#features",
+                start: "top 60%",
+            },
+            y: 50,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 1,
+            ease: "power4.out"
+        });
+
+        // Hover effect for images
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(4)';
+                cursor.style.backgroundColor = 'rgba(16, 185, 129, 0.2)';
+            });
+            card.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.backgroundColor = '#10b981';
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS AI | Abdul Samir Tuhin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --emerald: #10b981;
+            --emerald-glow: rgba(16, 185, 129, 0.4);
+            --bg-dark: #05080a;
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-outfit { font-family: 'Outfit', sans-serif; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .emerald-gradient {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        .text-emerald-glow {
+            text-shadow: 0 0 20px var(--emerald-glow);
+        }
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .bento-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--emerald);
+            box-shadow: 0 20px 40px -20px var(--emerald-glow);
+        }
+        .circular-text {
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--emerald);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+        .code-glow {
+            box-shadow: inset 0 0 50px rgba(16, 185, 129, 0.1);
+        }
+    </style>
+</head>
+<body class="selection:bg-emerald-500 selection:text-black">
+
+    <div class="custom-cursor hidden md:block"></div>
+
+    <!-- Background Orbs -->
+    <div class="orb w-[400px] h-[400px] bg-emerald-600 top-[-100px] right-[-100px]"></div>
+    <div class="orb w-[300px] h-[300px] bg-emerald-900 bottom-[10%] left-[-50px]"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-2xl px-8 py-4">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center font-bold text-black">J</div>
+                <span class="text-xl font-outfit font-bold tracking-tighter">JARVIS <span class="text-emerald-500 italic">AI</span></span>
+            </div>
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium text-slate-300">
+                <a href="#" class="hover:text-emerald-400 transition-colors">Home</a>
+                <a href="#features" class="hover:text-emerald-400 transition-colors">Features</a>
+                <a href="#source" class="hover:text-emerald-400 transition-colors">Source</a>
+                <a href="#download" class="hover:text-emerald-400 transition-colors">Download</a>
+            </div>
+            <button class="magnetic-btn glass px-6 py-2 rounded-full text-sm font-semibold border-emerald-500/30 hover:border-emerald-500 transition-all">
+                Get Started
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div class="z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border-emerald-500/20 mb-6" id="hero-badge">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-emerald-500">Version 2.0 Now Live</span>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-outfit font-extrabold leading-[0.9] mb-6" id="hero-title">
+                    Your Ultimate <br/> 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-200 to-emerald-600">Intelligent</span> <br/>
+                    Companion.
+                </h1>
+                <p class="text-slate-400 text-lg md:text-xl max-w-lg mb-10 leading-relaxed" id="hero-desc">
+                    Developed by <span class="text-white font-semibold">Abdul Samir Tuhin</span>, JARVIS AI pushes the boundaries of neural computing, bringing Jarvis-level automation to your desktop.
+                </p>
+                <div class="flex flex-wrap gap-4" id="hero-btns">
+                    <button class="magnetic-btn emerald-gradient px-8 py-4 rounded-xl font-bold text-black flex items-center gap-2 group">
+                        Download Now
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                    </button>
+                    <button class="magnetic-btn glass px-8 py-4 rounded-xl font-bold border-emerald-500/20 hover:bg-emerald-500/5 transition-all">
+                        View Source
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative" id="hero-image">
+                <div class="absolute inset-0 bg-emerald-500/20 blur-[120px] rounded-full"></div>
+                <div class="relative glass rounded-3xl p-4 border-emerald-500/20">
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="AI Core" class="rounded-2xl grayscale hover:grayscale-0 transition-all duration-700">
+                    
+                    <!-- Floating Cards -->
+                    <div class="absolute -top-10 -right-10 glass p-6 rounded-2xl border-emerald-500/30 floating-element">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                            <span class="text-[10px] uppercase tracking-widest font-bold">Processing Core</span>
+                        </div>
+                        <div class="text-2xl font-outfit font-bold">98.4%</div>
+                        <div class="w-32 h-1 bg-white/10 rounded-full mt-2">
+                            <div class="w-4/5 h-full bg-emerald-500 rounded-full"></div>
+                        </div>
+                    </div>
+
+                    <div class="absolute -bottom-10 -left-10 glass p-6 rounded-2xl border-emerald-500/30 floating-element" style="animation-delay: -2s;">
+                        <div class="flex gap-2">
+                            <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-400 uppercase tracking-widest">Active Users</div>
+                                <div class="text-lg font-bold">12,540+</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Circular Stamp -->
+                    <div class="absolute top-1/2 -right-20 circular-text hidden xl:block">
+                        <svg viewBox="0 0 100 100" width="150" height="150" class="fill-emerald-500/50">
+                            <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                            <text font-size="8" font-weight="bold" letter-spacing="2">
+                                <textPath xlink:href="#circlePath">
+                                    CREATED BY ABDUL SAMIR TUHIN • PREMIUM QUALITY • JARVIS AI 2.0 •
+                                </textPath>
+                            </text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-32 px-6 bg-[#080c10]" id="mission">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-emerald-500 font-bold uppercase tracking-[0.3em] text-sm mb-6 reveal-text">Our Philosophy</h2>
+            <p class="text-3xl md:text-5xl font-outfit font-medium leading-tight reveal-text">
+                "JARVIS isn't just software; it's a <span class="text-emerald-400">digital manifestation</span> of productivity. We aim to bridge the gap between human thought and machine execution."
+            </p>
+            <div class="mt-12 flex flex-col items-center gap-4 reveal-text">
+                <img src="https://i.pravatar.cc/150?img=33" alt="Tuhin" class="w-16 h-16 rounded-full border-2 border-emerald-500 p-1">
+                <div>
+                    <div class="font-bold">Abdul Samir Tuhin</div>
+                    <div class="text-slate-500 text-sm italic">Lead Developer & Founder</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Bento Grid -->
+    <section class="py-32 px-6" id="features">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-4xl md:text-6xl font-outfit font-extrabold mb-4">Elite Capabilities</h2>
+                <p class="text-slate-400 max-w-2xl">Beyond standard automation. JARVIS utilizes advanced LLMs and local system integration for a seamless experience.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+                <!-- Feature 1: Financial -->
+                <div class="md:col-span-8 bento-card glass rounded-3xl p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
+                    <div class="relative h-full flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 emerald-gradient rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-emerald-500/20">
+                                <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                            </div>
+                            <h3 class="text-3xl font-bold mb-4">Advanced Financial Analysis</h3>
+                            <p class="text-slate-400 max-w-md text-lg leading-relaxed">Analyze market trends, manage portfolios, and get real-time fiscal insights with our proprietary financial engine integration.</p>
+                        </div>
+                        <div class="mt-8 grid grid-cols-3 gap-4">
+                            <img src="https://picsum.photos/1920/1080?random=10" class="rounded-xl h-24 w-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all">
+                            <img src="https://picsum.photos/1920/1080?random=11" class="rounded-xl h-24 w-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all">
+                            <img src="https://picsum.photos/1920/1080?random=12" class="rounded-xl h-24 w-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Coding -->
+                <div class="md:col-span-4 bento-card glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-end">
+                    <div class="absolute top-8 right-8 text-emerald-500/20 text-8xl font-black italic select-none">CODE</div>
+                    <div class="relative">
+                        <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Master Coding Assistant</h3>
+                        <p class="text-slate-400 text-sm">Real-time debugging, boilerplate generation, and logic optimization across 20+ languages.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Context -->
+                <div class="md:col-span-4 bento-card glass rounded-3xl p-8 flex flex-col justify-center text-center">
+                    <div class="text-5xl font-outfit font-black text-emerald-500 mb-4 tracking-tighter">LIVE</div>
+                    <h3 class="text-xl font-bold mb-2">Real-time Context</h3>
+                    <p class="text-slate-400 text-sm italic">"Always listening, always learning. JARVIS understands your environment."</p>
+                </div>
+
+                <!-- Feature 4: Automation -->
+                <div class="md:col-span-8 bento-card glass rounded-3xl p-8 relative overflow-hidden group">
+                    <div class="flex flex-col md:flex-row gap-8 items-center h-full">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold mb-4">System Automation</h3>
+                            <p class="text-slate-400 leading-relaxed mb-6">Control your entire hardware ecosystem. From file management to system settings, JARVIS acts as your OS conductor.</p>
+                            <ul class="space-y-2 text-sm text-emerald-400/80">
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293l-4-4a1 1 0 00-1.414 1.414L11.586 9H7a1 1 0 100 2h4.586l-3.293 3.293a1 1 0 001.414 1.414l4-4a1 1 0 000-1.414z"></path></svg>
+                                    Automated OS Backup
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293l-4-4a1 1 0 00-1.414 1.414L11.586 9H7a1 1 0 100 2h4.586l-3.293 3.293a1 1 0 001.414 1.414l4-4a1 1 0 000-1.414z"></path></svg>
+                                    Smart Scheduling
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex-1 bg-black/40 rounded-2xl p-4 border border-white/5 code-glow">
+                            <pre class="text-[10px] text-emerald-500 font-mono">
+<span class="text-slate-500">// Initialize System Overdrive</span>
+function initJarvis() {
+  const core = new JarvisCore({
+    mode: 'autonomous',
+    user: 'Samir Tuhin',
+    security: 'Lvl_9'
+  });
+  
+  core.connectToHardware();
+  <span class="text-emerald-200">core.optimizePerformance();</span>
+  return 'System Ready';
+}
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Source Section -->
+    <section class="py-32 px-6 relative" id="source">
+        <div class="max-w-7xl mx-auto">
+            <div class="glass rounded-[3rem] p-12 md:p-20 border-emerald-500/10 overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+                    <img src="https://picsum.photos/1920/1080?random=15" alt="source-bg" class="w-full h-full object-cover">
+                </div>
+                <div class="relative z-10 max-w-2xl">
+                    <h2 class="text-5xl font-outfit font-extrabold mb-8">Open to <span class="text-emerald-500 italic">Inspect</span>.</h2>
+                    <p class="text-slate-400 text-lg mb-10 leading-relaxed">
+                        Transparency is key. The core logic of JARVIS AI is available for peer review. Our codebase follows rigorous standards of clean architecture and performance-first engineering.
+                    </p>
+                    <div class="flex items-center gap-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-white">45k+</div>
+                            <div class="text-[10px] uppercase tracking-widest text-emerald-500">Lines written</div>
+                        </div>
+                        <div class="w-[1px] h-12 bg-white/10"></div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-white">100%</div>
+                            <div class="text-[10px] uppercase tracking-widest text-emerald-500">Safety Rating</div>
+                        </div>
+                        <div class="w-[1px] h-12 bg-white/10"></div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-white">Py/JS</div>
+                            <div class="text-[10px] uppercase tracking-widest text-emerald-500">Tech Stack</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="py-32 px-6" id="download">
+        <div class="max-w-7xl mx-auto flex flex-col items-center">
+            <div class="text-center mb-16">
+                <div class="text-emerald-500 font-bold mb-4 tracking-widest">PREMIUM ACCESS</div>
+                <h2 class="text-5xl md:text-7xl font-outfit font-black mb-8">Join the Elite.</h2>
+            </div>
+            
+            <div class="w-full max-w-md glass rounded-3xl p-10 border-2 border-emerald-500/20 relative">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 emerald-gradient px-6 py-2 rounded-full text-black text-xs font-bold uppercase tracking-wider">
+                    Full Package
+                </div>
+                <div class="flex justify-between items-end mb-10">
+                    <div>
+                        <div class="text-slate-400 text-sm mb-1">Customizable Support</div>
+                        <div class="text-5xl font-outfit font-bold">Tk. <span class="text-emerald-400">Any</span></div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-emerald-500 font-bold">LIFETIME</div>
+                        <div class="text-slate-500 text-xs uppercase">One-time payment</div>
+                    </div>
+                </div>
+                
+                <div class="space-y-4 mb-10">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-slate-300">Executable Binaries (.EXE)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-slate-300">Complete Python Source Code</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-slate-300">Priority Feature Requests</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-slate-300">Personal Support from Samir</span>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <input type="number" placeholder="Enter Amount (Tk)" class="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 outline-none focus:border-emerald-500 transition-colors">
+                    <button class="magnetic-btn w-full emerald-gradient py-5 rounded-xl font-black text-black uppercase tracking-widest hover:brightness-110 transition-all">
+                        Secure Checkout
+                    </button>
+                    <p class="text-[10px] text-center text-slate-500 px-4 uppercase leading-relaxed">
+                        Payment confirms license agreement. Access is granted instantly via secure portal.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div>
+                <div class="text-2xl font-outfit font-bold tracking-tighter mb-4">JARVIS <span class="text-emerald-500 italic">AI</span></div>
+                <p class="text-slate-500 text-sm max-w-xs">Building the future of personal intelligence, one line of code at a time.</p>
+            </div>
+            
+            <div class="flex gap-12">
+                <div>
+                    <h4 class="font-bold mb-4">Product</h4>
+                    <ul class="text-slate-500 text-sm space-y-2">
+                        <li><a href="#" class="hover:text-emerald-400">Changelog</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">Documentation</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Creator</h4>
+                    <ul class="text-slate-500 text-sm space-y-2">
+                        <li><a href="#" class="hover:text-emerald-400">Portfolio</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-emerald-400">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <div class="text-slate-400 text-sm mb-2 italic">© 2024 JARVIS AI.</div>
+                <div class="text-[10px] text-emerald-500/50 uppercase tracking-widest">Designed & Developed by <br/> Abdul Samir Tuhin</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.2
+            });
+        });
+
+        // Hero Animations
+        const tl = gsap.timeline();
+        tl.from("#hero-badge", { y: -20, opacity: 0, duration: 0.8, ease: "power3.out" })
+          .from("#hero-title", { y: 40, opacity: 0, duration: 1, ease: "power4.out" }, "-=0.5")
+          .from("#hero-desc", { y: 20, opacity: 0, duration: 0.8 }, "-=0.7")
+          .from("#hero-btns", { y: 20, opacity: 0, duration: 0.8 }, "-=0.7")
+          .from("#hero-image", { scale: 0.9, opacity: 0, duration: 1.2, ease: "expo.out" }, "-=1");
+
+        // Floating Animations
+        gsap.to(".floating-element", {
+            y: 20,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('py-2');
+                nav.querySelector('div').classList.add('bg-black/80');
+            } else {
+                nav.classList.remove('py-2');
+                nav.querySelector('div').classList.remove('bg-black/80');
+            }
+        });
+
+        // Magnetic Buttons
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Scroll Text Reveal
+        const reveals = document.querySelectorAll('.reveal-text');
+        reveals.forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 80%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Bento Grid Reveal
+        gsap.from(".bento-card", {
+            scrollTrigger: {
+                trigger: "#features",
+                start: "top 60%",
+            },
+            y: 50,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 1,
+            ease: "power4.out"
+        });
+
+        // Hover effect for images
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(4)';
+                cursor.style.backgroundColor = 'rgba(16, 185, 129, 0.2)';
+            });
+            card.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.backgroundColor = '#10b981';
+            });
+        });
+    </script>
+</body>
+</html>
